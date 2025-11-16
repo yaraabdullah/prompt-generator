@@ -53,8 +53,10 @@ const translations = {
   },
   ar: {
     appTitle: "مولّد الأوامر",
-    appSubtitle:
-      "أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في ‎Lovable.",
+    appSubtitle: "أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في Lovable.",
+    // Used to control visual order of the English word "Lovable" in RTL.
+    appSubtitleHtml:
+      "أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في <span dir=\"ltr\">Lovable</span>.",
     domainTitle: "اختر المجال",
     domainDescription: "ابدأ باختيار نوع الموقع الذي تريد إنشاءه.",
     domains: {
@@ -364,7 +366,12 @@ function applyLanguage() {
   const t = translations[state.language];
 
   $("app-title").textContent = t.appTitle;
-  $("app-subtitle").textContent = t.appSubtitle;
+  const subtitleEl = $("app-subtitle");
+  if (state.language === "ar" && t.appSubtitleHtml) {
+    subtitleEl.innerHTML = t.appSubtitleHtml;
+  } else {
+    subtitleEl.textContent = t.appSubtitle;
+  }
   $("domain-title").textContent = t.domainTitle;
   $("domain-description").textContent = t.domainDescription;
   $("questions-title").textContent = t.questionsTitle;

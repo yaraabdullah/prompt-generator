@@ -365,6 +365,17 @@ header#main-header.header--rtl .brand {
   align-items: center !important;
 }
 
+/* Force logo to right, text to left in RTL */
+.header--rtl .brand .brand-logo,
+.brand--rtl .brand-logo {
+  order: 1 !important;
+}
+
+.header--rtl .brand .brand-text,
+.brand--rtl .brand-text {
+  order: 2 !important;
+}
+
 body[dir="rtl"] .brand {
   flex-direction: row-reverse;
 }

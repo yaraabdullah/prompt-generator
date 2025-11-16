@@ -411,15 +411,25 @@ function applyLanguage() {
     header.style.flexDirection = "row-reverse";
     
     // Reverse brand so logo is on right
-    // With row-reverse, DOM order [Logo, Text] becomes visual [Text, Logo]
-    // So Text appears on LEFT, Logo appears on RIGHT
+    // Use order property to force logo to right, text to left
     if (brand) {
       brand.classList.add("brand--rtl");
-      // Set inline style (CSS class with !important should override if needed)
       brand.style.flexDirection = "row-reverse";
       brand.style.display = "flex";
       brand.style.alignItems = "center";
+      
+      // Force order: logo on right (order 1), text on left (order 2)
+      const logo = brand.querySelector(".brand-logo");
+      const brandText = brand.querySelector(".brand-text");
+      if (logo) {
+        logo.style.order = "1";
+      }
+      if (brandText) {
+        brandText.style.order = "2";
+      }
+      
       console.log("Brand RTL applied - flexDirection:", brand.style.flexDirection, "classes:", brand.classList.toString());
+      console.log("Logo order:", logo?.style.order, "Text order:", brandText?.style.order);
     } else {
       console.error("Brand element not found in header!");
     }
@@ -437,6 +447,12 @@ function applyLanguage() {
       brand.style.flexDirection = "row";
       brand.style.display = "flex";
       brand.style.alignItems = "center";
+      
+      // Reset order
+      const logo = brand.querySelector(".brand-logo");
+      const brandText = brand.querySelector(".brand-text");
+      if (logo) logo.style.order = "";
+      if (brandText) brandText.style.order = "";
     }
     
     if (switcher) switcher.style.order = "";

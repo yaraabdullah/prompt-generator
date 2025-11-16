@@ -354,6 +354,10 @@ body[dir="rtl"] {
   flex-direction: row-reverse !important;
 }
 
+.header--rtl .brand {
+  flex-direction: row-reverse !important;
+}
+
 body[dir="rtl"] .brand {
   flex-direction: row-reverse;
 }

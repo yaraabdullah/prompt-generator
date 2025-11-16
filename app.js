@@ -396,12 +396,19 @@ function applyLanguage() {
   // Explicitly flip header layout (logo/title right, switcher left) in Arabic
   const header = document.querySelector("header") || document.querySelector(".header");
   if (header) {
+    const brand = header.querySelector(".brand");
     if (isArabic) {
       header.classList.add("header--rtl");
       header.style.flexDirection = "row-reverse";
+      if (brand) {
+        brand.style.flexDirection = "row-reverse";
+      }
     } else {
       header.classList.remove("header--rtl");
       header.style.flexDirection = "row";
+      if (brand) {
+        brand.style.flexDirection = "row";
+      }
     }
   }
 

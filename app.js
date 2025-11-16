@@ -411,6 +411,8 @@ function applyLanguage() {
     header.style.flexDirection = "row-reverse";
     
     // Reverse brand so logo is on right
+    // With row-reverse, DOM order [Logo, Text] becomes visual [Text, Logo]
+    // So Text appears on LEFT, Logo appears on RIGHT
     if (brand) {
       brand.classList.add("brand--rtl");
       brand.style.flexDirection = "row-reverse";

@@ -350,6 +350,7 @@ body {
 
 [dir="rtl"] .header {
   flex-direction: row-reverse;
+  justify-content: space-between;
 }
 
 [dir="rtl"] .brand {
@@ -358,6 +359,14 @@ body {
 
 [dir="rtl"] .brand-text {
   text-align: right;
+}
+
+[dir="rtl"] .header-main {
+  align-items: flex-end;
+}
+
+[dir="ltr"] .header-main {
+  align-items: flex-start;
 }
 
 [dir="rtl"] .actions {

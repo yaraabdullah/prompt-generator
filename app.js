@@ -410,26 +410,22 @@ function applyLanguage() {
     // Also set inline styles as backup
     header.style.flexDirection = "row-reverse";
     
-    // Reverse brand so logo is on right
-    // Use order property to force logo to right, text to left
+    // Reverse brand so logo is on right using direction: rtl
+    // With direction: rtl, DOM order [Logo, Text] becomes visual [Text, Logo]
+    // So Text appears on LEFT, Logo appears on RIGHT
     if (brand) {
       brand.classList.add("brand--rtl");
-      brand.style.flexDirection = "row-reverse";
+      brand.style.flexDirection = "row";
+      brand.style.direction = "rtl";
       brand.style.display = "flex";
       brand.style.alignItems = "center";
       
-      // Force order: logo on right (order 1), text on left (order 2)
-      const logo = brand.querySelector(".brand-logo");
       const brandText = brand.querySelector(".brand-text");
-      if (logo) {
-        logo.style.order = "1";
-      }
       if (brandText) {
-        brandText.style.order = "2";
+        brandText.style.direction = "rtl";
       }
       
-      console.log("Brand RTL applied - flexDirection:", brand.style.flexDirection, "classes:", brand.classList.toString());
-      console.log("Logo order:", logo?.style.order, "Text order:", brandText?.style.order);
+      console.log("Brand RTL applied - direction:", brand.style.direction, "flexDirection:", brand.style.flexDirection, "classes:", brand.classList.toString());
     } else {
       console.error("Brand element not found in header!");
     }
@@ -445,14 +441,14 @@ function applyLanguage() {
     if (brand) {
       brand.classList.remove("brand--rtl");
       brand.style.flexDirection = "row";
+      brand.style.direction = "ltr";
       brand.style.display = "flex";
       brand.style.alignItems = "center";
       
-      // Reset order
-      const logo = brand.querySelector(".brand-logo");
       const brandText = brand.querySelector(".brand-text");
-      if (logo) logo.style.order = "";
-      if (brandText) brandText.style.order = "";
+      if (brandText) {
+        brandText.style.direction = "ltr";
+      }
     }
     
     if (switcher) switcher.style.order = "";

@@ -608,6 +608,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initLanguageSwitcher();
   initNavigation();
   initForm();
+  // Make sure loading overlay is hidden on initial load
+  showLoading(false);
   applyLanguage();
 });
 

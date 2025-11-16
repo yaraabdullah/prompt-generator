@@ -92,24 +92,40 @@ async function callGemini(systemPrompt, apiKey) {
     },
   };
 
-  const res = await fetch(`${endpoint}?key=${apiKey}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  // Basic retry on 503 overload
+  const maxAttempts = 2;
+  let lastError;
 
-  if (!res.ok) {
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const res = await fetch(`${endpoint}?key=${apiKey}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const text =
+        data?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("") || "";
+      return text.trim();
+    }
+
+    const status = res.status;
     const errText = await res.text();
-    throw new Error(`Gemini API error: ${res.status} ${errText}`);
+
+    // If overloaded, retry once after a short delay
+    if (status === 503 && attempt < maxAttempts) {
+      lastError = new Error(`Gemini API overloaded (503): ${errText}`);
+      await new Promise((r) => setTimeout(r, 900));
+      continue;
+    }
+
+    throw new Error(`Gemini API error: ${status} ${errText}`);
   }
 
-  const data = await res.json();
-  const text =
-    data?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("") || "";
-
-  return text.trim();
+  throw lastError || new Error("Gemini API failed after retries.");
 }
 
 module.exports = async (req, res) => {

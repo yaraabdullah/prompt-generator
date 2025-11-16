@@ -29,7 +29,7 @@ const translations = {
         subtitle: "Courses, schools, platforms, training",
       },
       nonProfit: {
-        title: "Non-profit / Volunteering",
+        title: "Volunteering",
         subtitle: "Initiatives, campaigns, volunteering platforms",
       },
     },
@@ -54,7 +54,7 @@ const translations = {
   ar: {
     appTitle: "مولّد الأوامر",
     appSubtitle:
-      "أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في Lovable.",
+      "أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في منصة لوفبل.",
     domainTitle: "اختر المجال",
     domainDescription: "ابدأ باختيار نوع الموقع الذي تريد إنشاءه.",
     domains: {
@@ -75,7 +75,7 @@ const translations = {
         subtitle: "الدورات، المدارس، المنصات التعليمية، التدريب",
       },
       nonProfit: {
-        title: "العمل التطوعي / غير الربحي",
+        title: "العمل التطوعي",
         subtitle: "المبادرات، الحملات، منصات التطوع",
       },
     },
@@ -354,7 +354,7 @@ const domainQuestions = {
   ],
 };
 
-const domainOrder = ["healthcare", "smartCities", "business", "education", "nonProfit"];
+const domainOrder = ["nonProfit", "healthcare", "smartCities", "business", "education"];
 
 function $(id) {
   return document.getElementById(id);

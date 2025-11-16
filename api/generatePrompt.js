@@ -70,10 +70,10 @@ User notes (free text, may be incomplete or noisy):
 }
 
 async function callGemini(systemPrompt, apiKey) {
-  // Use v1 endpoint with a public Gemini model that supports generateContent
-  // If this ever 404s again, switch to the latest "flash" model from the docs.
+  // Use the widely available text model "gemini-pro" on the v1beta API.
+  // This model supports generateContent and avoids 404s from newer preview model names.
   const endpoint =
-    "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent";
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
 
   const body = {
     contents: [

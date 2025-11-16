@@ -28,8 +28,8 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1.1rem 2rem;
-  border-bottom: 1px solid #ddd;
-  background-color: #fff;
+  border-bottom: 1px solid #dde3e8;
+  background-color: #ffffff;
   gap: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
@@ -47,8 +47,8 @@ body {
 }
 
 .brand-logo {
-  width: 52px;
-  height: 52px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
 }
 
@@ -73,7 +73,7 @@ body {
 
 .language-switcher {
   display: inline-flex;
-  border: 1px solid #ccc;
+  border: 1px solid #c6d3dd;
   border-radius: 999px;
   overflow: hidden;
 }
@@ -88,7 +88,7 @@ body {
 }
 
 .lang-button--active {
-  background-color: #111;
+  background: linear-gradient(135deg, #0b5f8a, #0f7aa8);
   color: #fff;
 }
 
@@ -107,7 +107,7 @@ body {
   background-color: #fff;
   border-radius: 0.9rem;
   padding: 1.5rem 1.7rem;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #e1e7ee;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.04);
 }
 
@@ -138,8 +138,8 @@ body {
 
 .domain-button {
   border-radius: 0.6rem;
-  border: 1px solid #ccc;
-  background-color: #fafafa;
+  border: 1px solid #d1dde7;
+  background-color: #fafbfd;
   padding: 0.9rem 1rem;
   text-align: left;
   cursor: pointer;
@@ -155,8 +155,8 @@ body {
 }
 
 .domain-button:hover {
-  background-color: #f2f2f2;
-  border-color: #aaa;
+  background-color: #f2f7fb;
+  border-color: #0f7aa8;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
@@ -213,8 +213,8 @@ body {
 .textarea-input:focus,
 .prompt-output:focus {
   outline: none;
-  border-color: #222;
-  box-shadow: 0 0 0 1px #222;
+  border-color: #0f7aa8;
+  box-shadow: 0 0 0 1px #0f7aa8;
 }
 
 .textarea-input {
@@ -238,7 +238,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  background-color: #f4f4f4;
+  background-color: #f4f5f7;
   color: #111;
   transition:
     background-color 0.12s ease,
@@ -248,7 +248,7 @@ body {
 }
 
 .button--primary {
-  background-color: #111;
+  background: linear-gradient(135deg, #0b5f8a, #0f7aa8);
   color: #fff;
 }
 
@@ -258,8 +258,8 @@ body {
 }
 
 .button--secondary {
-  border-color: #ccc;
-  background-color: #f7f7f7;
+  border-color: #cbd5df;
+  background-color: #f7f8fa;
 }
 
 .button:hover {

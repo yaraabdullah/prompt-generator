@@ -41,6 +41,7 @@ const translations = {
     resultTitle: "Your Lovable prompt",
     resultDescription: "Copy this prompt and paste it into Lovable to generate your website.",
     copyButton: "Copy to clipboard",
+    openLovableButton: "Open Lovable",
     copied: "Copied!",
     copyFailed: "Copy failed",
     privacyNote: "Your answers are only used to generate a prompt and are not stored.",
@@ -86,6 +87,7 @@ const translations = {
     resultTitle: "الأمر الجاهز لـ Lovable",
     resultDescription: "انسخ هذا الأمر والصقه في Lovable لإنشاء موقعك.",
     copyButton: "نسخ إلى الحافظة",
+    openLovableButton: "الانتقال إلى Lovable",
     copied: "تم النسخ!",
     copyFailed: "فشل النسخ",
     privacyNote: "تُستخدم إجاباتك فقط لإنشاء الأمر ولا يتم حفظها.",
@@ -372,6 +374,9 @@ function applyLanguage() {
   $("result-title").textContent = t.resultTitle;
   $("result-description").textContent = t.resultDescription;
   $("copy-button-label").textContent = t.copyButton;
+  if ($("open-lovable-label")) {
+    $("open-lovable-label").textContent = t.openLovableButton;
+  }
   $("privacy-note").textContent = t.privacyNote;
   $("loading-text").textContent = t.loadingText;
 
@@ -566,6 +571,11 @@ function handleCopy() {
     });
 }
 
+function handleOpenLovable() {
+  const url = "https://lovable.dev";
+  window.open(url, "_blank", "noopener");
+}
+
 function initLanguageSwitcher() {
   const btnEn = $("lang-en");
   const btnAr = $("lang-ar");
@@ -601,6 +611,10 @@ function initNavigation() {
 function initForm() {
   $("questions-form").addEventListener("submit", handleSubmit);
   $("copy-button").addEventListener("click", handleCopy);
+  const openLovableBtn = $("open-lovable");
+  if (openLovableBtn) {
+    openLovableBtn.addEventListener("click", handleOpenLovable);
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {

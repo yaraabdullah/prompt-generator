@@ -43,6 +43,7 @@ body {
 
 .brand {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 0.85rem;
 }
@@ -357,9 +358,11 @@ body[dir="rtl"] {
 .header--rtl .brand,
 .brand--rtl,
 .header--rtl .brand--rtl,
-header.header--rtl .brand {
+header.header--rtl .brand,
+header#main-header.header--rtl .brand {
   flex-direction: row-reverse !important;
   display: flex !important;
+  align-items: center !important;
 }
 
 body[dir="rtl"] .brand {

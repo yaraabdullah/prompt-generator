@@ -415,7 +415,13 @@ function applyLanguage() {
     // So Text appears on LEFT, Logo appears on RIGHT
     if (brand) {
       brand.classList.add("brand--rtl");
+      // Set inline style (CSS class with !important should override if needed)
       brand.style.flexDirection = "row-reverse";
+      brand.style.display = "flex";
+      brand.style.alignItems = "center";
+      console.log("Brand RTL applied - flexDirection:", brand.style.flexDirection, "classes:", brand.classList.toString());
+    } else {
+      console.error("Brand element not found in header!");
     }
     
     // Ensure correct order
@@ -429,6 +435,8 @@ function applyLanguage() {
     if (brand) {
       brand.classList.remove("brand--rtl");
       brand.style.flexDirection = "row";
+      brand.style.display = "flex";
+      brand.style.alignItems = "center";
     }
     
     if (switcher) switcher.style.order = "";

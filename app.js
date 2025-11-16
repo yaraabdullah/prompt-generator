@@ -53,10 +53,10 @@ const translations = {
   },
   ar: {
     appTitle: "مولّد الأوامر",
-    appSubtitle: "أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في Lovable.",
+    appSubtitle: "Lovable أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في",
     // Used to control visual order of the English word "Lovable" in RTL.
     appSubtitleHtml:
-      "أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في <span dir=\"ltr\">Lovable</span>.",
+      "Lovable أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في",
     domainTitle: "اختر المجال",
     domainDescription: "ابدأ باختيار نوع الموقع الذي تريد إنشاءه.",
     domains: {
@@ -387,9 +387,11 @@ function applyLanguage() {
   $("privacy-note").textContent = t.privacyNote;
   $("loading-text").textContent = t.loadingText;
 
-  // Direction
+  // Direction: apply to the main app and the whole body so the header text flows correctly
+  const isArabic = state.language === "ar";
   const app = $("app");
-  app.setAttribute("dir", state.language === "ar" ? "rtl" : "ltr");
+  app.setAttribute("dir", isArabic ? "rtl" : "ltr");
+  document.body.setAttribute("dir", isArabic ? "rtl" : "ltr");
 
   // Domains
   renderDomains();

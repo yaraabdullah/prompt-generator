@@ -354,7 +354,8 @@ body[dir="rtl"] {
   flex-direction: row-reverse !important;
 }
 
-.header--rtl .brand {
+.header--rtl .brand,
+.brand--rtl {
   flex-direction: row-reverse !important;
 }
 

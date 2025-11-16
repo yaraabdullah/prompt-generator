@@ -394,22 +394,43 @@ function applyLanguage() {
   document.body.setAttribute("dir", isArabic ? "rtl" : "ltr");
 
   // Explicitly flip header layout (logo/title right, switcher left) in Arabic
-  const header = $("main-header");
-  if (header) {
-    const brand = header.querySelector(".brand");
-    if (isArabic) {
-      header.classList.add("header--rtl");
-      header.style.flexDirection = "row-reverse";
-      if (brand) {
-        brand.style.flexDirection = "row-reverse";
-      }
-    } else {
-      header.classList.remove("header--rtl");
-      header.style.flexDirection = "";
-      if (brand) {
-        brand.style.flexDirection = "";
-      }
+  const header = $("main-header") || document.querySelector("header.header") || document.querySelector("header");
+  if (!header) {
+    console.error("Header element not found!");
+    return;
+  }
+  
+  const brand = header.querySelector(".brand");
+  const headerMain = header.querySelector(".header-main");
+  const switcher = header.querySelector(".language-switcher");
+  
+  if (isArabic) {
+    // Add class for CSS rules
+    header.classList.add("header--rtl");
+    // Also set inline styles as backup
+    header.style.flexDirection = "row-reverse";
+    
+    // Reverse brand so logo is on right
+    if (brand) {
+      brand.classList.add("brand--rtl");
+      brand.style.flexDirection = "row-reverse";
     }
+    
+    // Ensure correct order
+    if (switcher) switcher.style.order = "1";
+    if (headerMain) headerMain.style.order = "2";
+  } else {
+    // Remove RTL classes
+    header.classList.remove("header--rtl");
+    header.style.flexDirection = "row";
+    
+    if (brand) {
+      brand.classList.remove("brand--rtl");
+      brand.style.flexDirection = "row";
+    }
+    
+    if (switcher) switcher.style.order = "";
+    if (headerMain) headerMain.style.order = "";
   }
 
   // Domains

@@ -1,5 +1,49 @@
 const fetch = global.fetch || require("node-fetch");
 
+function buildFallbackPrompt(language, domain, answers) {
+  const isArabic = language === "ar";
+  const clean = (v) => (typeof v === "string" && v.trim() ? v.trim() : "");
+
+  const idea = clean(answers?.idea);
+  const audience = clean(answers?.targetAudience);
+  const goals =
+    clean(answers?.mainGoals) ||
+    clean(answers?.dataContent) ||
+    clean(answers?.contentType) ||
+    clean(answers?.impact);
+  const features = clean(answers?.features);
+
+  if (!isArabic) {
+    return [
+      `You are Lovable, an AI website builder. Build a complete website based on this idea: ${idea || "a simple professional website in the selected domain"}.`,
+      audience
+        ? `The main audience is: ${audience}.`
+        : "Choose a clear primary audience and write copy that speaks directly to them.",
+      goals
+        ? `Main goals of the site: ${goals}.`
+        : "The website should clearly explain the value, build trust, and encourage visitors to take action.",
+      features
+        ? `Key sections and features to include: ${features}.`
+        : "Include a modern home page, clear navigation, an about/overview section, services or projects, and a simple contact section or form.",
+      "Use a clean modern layout, responsive on desktop and mobile. Write concise, friendly copy and use neutral placeholder images/icons where needed.",
+    ].join(" ");
+  }
+
+  return [
+    `أنت منصة Lovable لإنشاء المواقع بالذكاء الاصطناعي. أنشئ موقعاً كاملاً بناءً على هذه الفكرة: ${idea || "موقع بسيط واحترافي في المجال المختار"}.`,
+    audience
+      ? `الجمهور المستهدف الرئيسي: ${audience}.`
+      : "اختر جمهوراً مستهدفاً رئيسياً واكتب محتوى يتحدث إليه بشكل مباشر.",
+    goals
+      ? `أهداف الموقع الأساسية: ${goals}.`
+      : "يجب أن يوضح الموقع القيمة، ويعزز الثقة، ويشجّع الزائر على اتخاذ إجراء واضح.",
+    features
+      ? `الأقسام والخصائص المطلوبة في الموقع: ${features}.`
+      : "أضف صفحة رئيسية حديثة، وصفحة تعرّف بالمبادرة أو الجهة، وصفحة للخدمات أو المشاريع، وقسم واضح للتواصل أو التسجيل أو الانضمام.",
+    "استخدم تصميماً عصرياً بسيطاً يدعم العرض على الجوال والكمبيوتر، مع نصوص عربية فصحى واضحة وصور أو أيقونات افتراضية مناسبة.",
+  ].join(" ");
+}
+
 function buildSystemPrompt(language, domain, answers) {
   const isArabic = language === "ar";
 
@@ -152,8 +196,20 @@ module.exports = async (req, res) => {
       return;
     }
 
-    const systemPrompt = buildSystemPrompt(language === "ar" ? "ar" : "en", domain, answers);
-    const prompt = await callGemini(systemPrompt, apiKey);
+    const langCode = language === "ar" ? "ar" : "en";
+    const systemPrompt = buildSystemPrompt(langCode, domain, answers);
+    let prompt = "";
+
+    try {
+      prompt = await callGemini(systemPrompt, apiKey);
+    } catch (modelErr) {
+      console.error("Gemini call failed, falling back to local prompt:", modelErr);
+      // fall through to fallback below
+    }
+
+    if (!prompt || prompt.length < 10) {
+      prompt = buildFallbackPrompt(langCode, domain, answers);
+    }
 
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");

@@ -70,10 +70,14 @@ User notes (free text, may be incomplete or noisy):
 }
 
 async function callGemini(systemPrompt, apiKey) {
-  // Use the widely available text model "gemini-pro" on the v1beta API.
-  // This model supports generateContent and avoids 404s from newer preview model names.
-  const endpoint =
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
+  // Use the model explicitly chosen for this project.
+  // If you ever change models in Google AI Studio, update the ID here or via an env var.
+  const modelId = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+  const baseUrl = modelId.startsWith("gemini-2.5")
+    ? "https://generativelanguage.googleapis.com/v1"
+    : "https://generativelanguage.googleapis.com/v1beta";
+
+  const endpoint = `${baseUrl}/models/${modelId}:generateContent`;
 
   const body = {
     contents: [

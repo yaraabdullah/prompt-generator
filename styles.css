@@ -349,7 +349,7 @@ body[dir="rtl"] {
   direction: rtl;
 }
 
-body[dir="rtl"] .header {
+.header--rtl {
   flex-direction: row-reverse !important;
 }
 

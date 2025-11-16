@@ -394,7 +394,7 @@ function applyLanguage() {
   document.body.setAttribute("dir", isArabic ? "rtl" : "ltr");
 
   // Explicitly flip header layout (logo/title right, switcher left) in Arabic
-  const header = document.querySelector(".header");
+  const header = document.querySelector("header.header");
   if (header) {
     if (isArabic) {
       header.classList.add("header--rtl");

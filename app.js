@@ -7,7 +7,7 @@ const state = {
 
 const translations = {
   en: {
-    appTitle: "Website Prompt Generator",
+    appTitle: "Prompt Generator",
     appSubtitle: "Answer a few questions and get a ready-to-use prompt for Lovable.",
     domainTitle: "Choose a domain",
     domainDescription: "Start by selecting the type of website you want to generate.",
@@ -51,7 +51,7 @@ const translations = {
       "Something went wrong while generating the prompt. Please try again in a moment.",
   },
   ar: {
-    appTitle: "مولّد أوامر لمواقع Lovable",
+    appTitle: "مولّد الأوامر",
     appSubtitle:
       "أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في Lovable.",
     domainTitle: "اختر المجال",

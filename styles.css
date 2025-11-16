@@ -344,27 +344,28 @@ body {
 
 /* RTL support */
 
-[dir="rtl"] {
+[dir="rtl"],
+body[dir="rtl"] {
   direction: rtl;
 }
 
-[dir="rtl"] .brand {
+body[dir="rtl"] .header {
+  flex-direction: row-reverse !important;
+}
+
+body[dir="rtl"] .brand {
   flex-direction: row-reverse;
 }
 
-[dir="rtl"] .brand-text {
+body[dir="rtl"] .brand-text {
   text-align: right;
 }
 
-[dir="rtl"] .header {
+body[dir="rtl"] .actions {
   flex-direction: row-reverse;
 }
 
-[dir="rtl"] .actions {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .domain-button {
+body[dir="rtl"] .domain-button {
   text-align: right;
 }
 
@@ -372,6 +373,11 @@ body {
   .header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  body[dir="rtl"] .header {
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   .app {

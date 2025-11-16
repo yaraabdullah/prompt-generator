@@ -70,9 +70,9 @@ User notes (free text, may be incomplete or noisy):
 }
 
 async function callGemini(systemPrompt, apiKey) {
-  // Use a stable Gemini model that supports generateContent with v1beta
+  // Use v1 endpoint with a supported Gemini model for generateContent
   const endpoint =
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent";
+    "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent";
 
   const body = {
     contents: [

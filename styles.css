@@ -348,11 +348,6 @@ body {
   direction: rtl;
 }
 
-[dir="rtl"] .header {
-  flex-direction: row-reverse;
-  justify-content: space-between;
-}
-
 [dir="rtl"] .brand {
   flex-direction: row-reverse;
 }
@@ -361,12 +356,8 @@ body {
   text-align: right;
 }
 
-[dir="rtl"] .header-main {
-  align-items: flex-end;
-}
-
-[dir="ltr"] .header-main {
-  align-items: flex-start;
+.header--rtl {
+  flex-direction: row-reverse;
 }
 
 [dir="rtl"] .actions {

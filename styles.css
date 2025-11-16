@@ -303,6 +303,21 @@ body {
   color: #666;
 }
 
+.footer {
+  text-align: center;
+  padding: 2rem 1.25rem;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.footer p {
+  margin: 0;
+}
+
+body[dir="rtl"] .footer {
+  direction: rtl;
+}
+
 .loading-overlay {
   position: fixed;
   inset: 0;

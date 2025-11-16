@@ -355,8 +355,11 @@ body[dir="rtl"] {
 }
 
 .header--rtl .brand,
-.brand--rtl {
+.brand--rtl,
+.header--rtl .brand--rtl,
+header.header--rtl .brand {
   flex-direction: row-reverse !important;
+  display: flex !important;
 }
 
 body[dir="rtl"] .brand {

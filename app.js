@@ -56,7 +56,7 @@ const translations = {
     appSubtitle: "Lovable أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في",
     // Used to control visual order of the English word "Lovable" in RTL.
     appSubtitleHtml:
-      "Lovable أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في",
+      "أجب عن بعض الأسئلة القصيرة وسننشئ لك أمراً جاهزاً لاستخدامه في <span dir=\"ltr\">Lovable</span>.",
     domainTitle: "اختر المجال",
     domainDescription: "ابدأ باختيار نوع الموقع الذي تريد إنشاءه.",
     domains: {
